@@ -1,3 +1,5 @@
+// Jenkinsfile
+
 @Library('mySharedLibrary') _
 
 import mySharedLibrary.MyPipeline
@@ -8,43 +10,33 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                script {
-                    myPipeline.checkoutCode()
-                }
+                myPipeline.checkoutCode()
             }
         }
 
-        stage('Build') {
+        stage('Build Java App') {
             steps {
-                script {
-                    myPipeline.buildJavaApp()
-                }
+                myPipeline.buildJavaApp()
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                script {
-                    myPipeline.runTests()
-                }
+                myPipeline.runTests()
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                script {
-                    myPipeline.publishTestResults()
-                }
+                myPipeline.publishTestResults()
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    myPipeline.buildDockerImage()
-                }
+                myPipeline.buildDockerImage()
             }
         }
     }
