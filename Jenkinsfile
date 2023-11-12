@@ -1,36 +1,46 @@
 @Library('jenkins-shared-lib') _
 
 pipeline {
-    agent any
+    agent {
+        label 'agent1'
+    }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                myPipeline.checkoutCode()
+                checkout scm
             }
         }
 
-        stage('Build Java App') {
+        stage('Build') {
             steps {
-                myPipeline.buildJavaApp()
+                script {
+                    buildJavaApplication()
+                }
             }
         }
 
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                myPipeline.runTests()
+                script {
+                    testJavaApplication()
+                }
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                myPipeline.publishTestResults()
+                script {
+                    publishTestResults()
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                myPipeline.buildDockerImage()
+                script {
+                    buildDockerImage()
+                }
             }
         }
     }
