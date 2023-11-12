@@ -1,9 +1,5 @@
 @Library('jenkins-shared-lib') _
 
-import mySharedLibrary.MyPipeline
-
-def myPipeline = new MyPipeline()
-
 pipeline {
     agent any
 
