@@ -1,50 +1,37 @@
-// Jenkinsfile
-
 @Library('mySharedLibrary') _
-
-def pipelineInstance = myPipeline()
+def myPipeline = new MyPipeline()
 
 pipeline {
-    agent { label 'agent1' }
+    agent any
 
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    pipelineInstance.checkoutCode()
-                }
+                myPipeline.checkoutCode()
             }
         }
 
         stage('Build') {
             steps {
-                script {
-                    pipelineInstance.buildJavaApp()
-                }
+                myPipeline.buildJavaApp()
             }
         }
 
         stage('Test') {
             steps {
-                script {
-                    pipelineInstance.runTests()
-                }
+                myPipeline.runTests()
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                script {
-                    pipelineInstance.publishTestResults()
-                }
+                myPipeline.publishTestResults()
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    pipelineInstance.buildDockerImage()
-                }
+                myPipeline.buildDockerImage()
             }
         }
     }
