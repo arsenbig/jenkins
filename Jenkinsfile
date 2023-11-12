@@ -1,43 +1,36 @@
-@Library('jenkins-shared-lib') _
+@Library('mySharedLibrary') _
 
 pipeline {
-    agent 
+    agent { label 'agent1' }
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the latest code from the source control repository
-                checkout scm
+                myPipeline.checkoutCode()
             }
         }
 
         stage('Build') {
             steps {
-                // Compile the Java application using Maven
-                 sh 'mvn clean isntall'
+                myPipeline.buildJavaApp()
             }
         }
 
         stage('Test') {
             steps {
-                // Run unit tests
-                sh 'mvn test'
+                myPipeline.runTests()
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                // Archive and publish test results
-                junit 'target/surefire-reports/*.xml'
+                myPipeline.publishTestResults()
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Construct a Docker image for the compiled Java application
-                script {
-                    docker.build("java-app:latest")
-                }
+                myPipeline.buildDockerImage()
             }
         }
     }

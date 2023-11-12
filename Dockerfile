@@ -4,10 +4,10 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN mvn clean install
+# RUN mvn clean install
 
-FROM openjdk:19-jdk-alpine
+# FROM openjdk:19-jdk-alpine
 
-COPY --from=build /usr/src/app/target/*.jar /opt/demo.jar
+# COPY --from=build /usr/src/app/target/*.jar /opt/demo.jar
 
-CMD ["java", "-jar", "/opt/demo.jar"]
+# CMD ["java", "-jar", "/opt/demo.jar"]
