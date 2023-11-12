@@ -8,31 +8,41 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                JavaPipeline.callCheckout()
+                script {
+                    JavaPipeline.callCheckout()
+                }
             }
         }
 
         stage('Build') {
             steps {
-                JavaPipeline.callBuild()
+                script {
+                    JavaPipeline.callBuild()
+                }
             }
         }
 
         stage('Test') {
             steps {
-                JavaPipeline.callTest()
+                script {
+                    JavaPipeline.callTest()
+                }
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                JavaPipeline.callPublishTestResults()
+                script {
+                    JavaPipeline.callPublishTestResults()
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                JavaPipeline.callBuildDockerImage()
+                script {
+                    JavaPipeline.callBuildDockerImage()
+                }
             }
         }
     }
