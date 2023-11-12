@@ -1,3 +1,5 @@
+// Jenkinsfile
+
 @Library('mySharedLibrary') _
 
 pipeline {
@@ -7,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    myPipeline.checkoutCode()
+                    myPipeline().checkoutCode()
                 }
             }
         }
@@ -15,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    myPipeline.buildJavaApp()
+                    myPipeline().buildJavaApp()
                 }
             }
         }
@@ -23,7 +25,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    myPipeline.runTests()
+                    myPipeline().runTests()
                 }
             }
         }
@@ -31,7 +33,7 @@ pipeline {
         stage('Publish Test Results') {
             steps {
                 script {
-                    myPipeline.publishTestResults()
+                    myPipeline().publishTestResults()
                 }
             }
         }
@@ -39,7 +41,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    myPipeline.buildDockerImage()
+                    myPipeline().buildDockerImage()
                 }
             }
         }
