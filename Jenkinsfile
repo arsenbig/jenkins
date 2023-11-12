@@ -2,6 +2,8 @@
 
 @Library('mySharedLibrary') _
 
+def pipelineInstance = myPipeline()
+
 pipeline {
     agent { label 'agent1' }
 
@@ -9,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    myPipeline().checkoutCode()
+                    pipelineInstance.checkoutCode()
                 }
             }
         }
@@ -17,7 +19,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    myPipeline().buildJavaApp()
+                    pipelineInstance.buildJavaApp()
                 }
             }
         }
@@ -25,7 +27,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    myPipeline().runTests()
+                    pipelineInstance.runTests()
                 }
             }
         }
@@ -33,7 +35,7 @@ pipeline {
         stage('Publish Test Results') {
             steps {
                 script {
-                    myPipeline().publishTestResults()
+                    pipelineInstance.publishTestResults()
                 }
             }
         }
@@ -41,7 +43,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    myPipeline().buildDockerImage()
+                    pipelineInstance.buildDockerImage()
                 }
             }
         }
