@@ -1,6 +1,4 @@
-// Jenkinsfile
-
-@Library('mySharedLibrary') _
+@Library('jenkins-shared-lib') _
 
 import mySharedLibrary.MyPipeline
 
