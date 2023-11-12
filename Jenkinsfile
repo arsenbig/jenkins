@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    JavaPipeline.callCheckout()
+                    myPipeline.callCheckout()
                 }
             }
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    JavaPipeline.callBuild()
+                    myPipeline.callBuild()
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    JavaPipeline.callTest()
+                    myPipeline.callTest()
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         stage('Publish Test Results') {
             steps {
                 script {
-                    JavaPipeline.callPublishTestResults()
+                    myPipeline.callPublishTestResults()
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    JavaPipeline.callBuildDockerImage()
+                    myPipeline.callBuildDockerImage()
                 }
             }
         }
