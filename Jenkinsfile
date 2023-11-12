@@ -1,4 +1,7 @@
 @Library('mySharedLibrary') _
+
+import mySharedLibrary.MyPipeline
+
 def myPipeline = new MyPipeline()
 
 pipeline {
@@ -7,31 +10,41 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                myPipeline.checkoutCode()
+                script {
+                    myPipeline.checkoutCode()
+                }
             }
         }
 
         stage('Build') {
             steps {
-                myPipeline.buildJavaApp()
+                script {
+                    myPipeline.buildJavaApp()
+                }
             }
         }
 
         stage('Test') {
             steps {
-                myPipeline.runTests()
+                script {
+                    myPipeline.runTests()
+                }
             }
         }
 
         stage('Publish Test Results') {
             steps {
-                myPipeline.publishTestResults()
+                script {
+                    myPipeline.publishTestResults()
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                myPipeline.buildDockerImage()
+                script {
+                    myPipeline.buildDockerImage()
+                }
             }
         }
     }
