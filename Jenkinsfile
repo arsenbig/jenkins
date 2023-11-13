@@ -46,4 +46,14 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // Add a post-build step to delete Checkstyle and Static Analysis actions
+            script {
+                deleteIssues id: 'checkstyle'
+                deleteIssues id: 'custom-checkstyle-test'
+            }
+        }
+    }
 }
