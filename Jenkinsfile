@@ -40,7 +40,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
+                dir('workspace/Java-app')
+                  script {
                     myPipeline.callBuildDockerImage()
                 }
             }
